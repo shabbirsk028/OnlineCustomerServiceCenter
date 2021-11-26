@@ -21,57 +21,63 @@ import com.model.Operator;
 import com.service.OperatorService;
 
 @RestController
-@RequestMapping(path="/api")
+@RequestMapping(path = "/api")
 public class OperatorController {
 	@Autowired
 	OperatorService operatorService;
+
 	@PostMapping("/login")
-	public ResponseEntity<Login> addOperator(@RequestBody Login c) throws InvalidCredintialException
-	{
-		Login l1=operatorService.login(c);
-		ResponseEntity re=new ResponseEntity<Login>(l1,HttpStatus.OK);
+	public ResponseEntity<Login> addOperator(@RequestBody Login c) throws InvalidCredintialException {
+		Login l1 = operatorService.login(c);
+		ResponseEntity re = new ResponseEntity<Login>(l1, HttpStatus.OK);
 		return re;
 	}
+
 	@PostMapping("/addCustomerIssue")
-	public ResponseEntity<Issue>addCustomerIssue(@RequestBody Issue issue){
-		Issue i1=operatorService.addCustomerIssue(issue);
+	public ResponseEntity<Issue> addCustomerIssue(@RequestBody Issue issue) {
+		Issue i1 = operatorService.addCustomerIssue(issue);
 		operatorService.addCustomerIssue(issue);
-		ResponseEntity re=new ResponseEntity<Issue>(i1,HttpStatus.OK);
+		ResponseEntity re = new ResponseEntity<Issue>(i1, HttpStatus.OK);
 		return re;
 	}
-	@PutMapping(path="/modifyCustomerIssue")
-	public ResponseEntity<Issue> modifyDepartment(@RequestBody Issue issue){
-		Issue i2=operatorService.modifyCustomeIssue(issue);
-		ResponseEntity re= new ResponseEntity<Issue>(i2,HttpStatus.OK);
+
+	@PutMapping(path = "/modifyCustomerIssue")
+	public ResponseEntity<Issue> modifyDepartment(@RequestBody Issue issue) {
+		Issue i2 = operatorService.modifyCustomeIssue(issue);
+		ResponseEntity re = new ResponseEntity<Issue>(i2, HttpStatus.OK);
 		return re;
 	}
-	@GetMapping(path="/getCusomer/{customerId}")
-	public ResponseEntity<Customer> findCustomerById(@PathVariable int operatorId)throws Throwable{
+
+	@GetMapping(path = "/getCusomer/{customerId}")
+	public ResponseEntity<Customer> findCustomerById(@PathVariable int operatorId) throws Throwable {
 		int customerId = 0;
-		Customer c=operatorService.findCustomerById(customerId);
-		ResponseEntity re= new ResponseEntity<Customer>(c,HttpStatus.OK);
+		Customer c = operatorService.findCustomerById(customerId);
+		ResponseEntity re = new ResponseEntity<Customer>(c, HttpStatus.OK);
 		return re;
 	}
-	@GetMapping(path="/getCusomer/{email}")
-	public ResponseEntity<Customer> findCustomerByEmail(@PathVariable int operatorId)throws Throwable{
+
+	@GetMapping(path = "/getCusomer/{email}")
+	public ResponseEntity<Customer> findCustomerByEmail(@PathVariable int operatorId) throws Throwable {
 		int customerId = 0;
 		String email = null;
-		Customer c=operatorService.findCustomerByEmail(email);
-		ResponseEntity re= new ResponseEntity<Customer>(c,HttpStatus.OK);
+		Customer c = operatorService.findCustomerByEmail(email);
+		ResponseEntity re = new ResponseEntity<Customer>(c, HttpStatus.OK);
 		return re;
 	}
+
 	@GetMapping("getCustomer")
-	public ResponseEntity<List<Customer>> findCustomerByName(String firstName) throws Throwable{
-	List<Customer> lc=operatorService.findCustomerByName(firstName);
-	ResponseEntity re=new ResponseEntity<List<Customer>>(lc,HttpStatus.OK);
-	return re;
-	}
-	@PostMapping("/closeCustomerIssue")
-	public ResponseEntity<Issue>closeCustomerIssue(@RequestBody Issue issue){
-		Issue i1=operatorService.addCustomerIssue(issue);
-		operatorService.addCustomerIssue(issue);
-		ResponseEntity re=new ResponseEntity<Issue>(i1,HttpStatus.OK);
+	public ResponseEntity<List<Customer>> findCustomerByName(String firstName) throws Throwable {
+		List<Customer> lc = operatorService.findCustomerByName(firstName);
+		ResponseEntity re = new ResponseEntity<List<Customer>>(lc, HttpStatus.OK);
 		return re;
 	}
-	
+
+	@PostMapping("/closeCustomerIssue")
+	public ResponseEntity<Issue> closeCustomerIssue(@RequestBody Issue issue) {
+		Issue i1 = operatorService.addCustomerIssue(issue);
+		operatorService.addCustomerIssue(issue);
+		ResponseEntity re = new ResponseEntity<Issue>(i1, HttpStatus.OK);
+		return re;
+	}
+
 }

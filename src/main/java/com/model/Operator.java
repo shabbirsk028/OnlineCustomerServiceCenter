@@ -1,4 +1,5 @@
 package com.model;
+
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -9,27 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "operator1")
 public class Operator implements Serializable {
-	
-	
+
 	private static final long serialVersionUID = -9168833388053422036L;
 	@Id
 	@GeneratedValue
-	@Column(name="operator_id")
+	@Column(name = "operator_id")
+	@NotNull
 	private int operatorId;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
+	@NotNull
 	private String email;
+	@NotNull
 	private String mobile;
+	@NotNull
 	private String city;
-	
-	@OneToOne(targetEntity=Department.class,cascade=CascadeType.ALL)
-	@JoinColumn(name="department_id")
+
+	@OneToOne(targetEntity = Department.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "department_id")
 	private Department department;
 
-	
 	public Department getDepartment() {
 		return department;
 	}
@@ -38,7 +45,7 @@ public class Operator implements Serializable {
 		this.department = department;
 	}
 
-	//Getter and Setter
+	// Getter and Setter
 	public int getOperatorId() {
 		return operatorId;
 	}
@@ -93,6 +100,4 @@ public class Operator implements Serializable {
 				+ email + ", mobile=" + mobile + ", city=" + city + ", department=" + department + "]";
 	}
 
-	
-	
 }
